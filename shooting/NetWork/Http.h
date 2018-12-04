@@ -44,6 +44,7 @@ namespace NetWork
 		// 正規表現用
 		std::vector<std::string> Search(std::string const & text, std::regex const & re);
 		std::vector<std::string> Match(std::string const & text, std::regex const & re);
+		std::string GetCookies();
 	private:
 		// 自身の実体
 		static Http *m_instance;
@@ -69,6 +70,7 @@ namespace NetWork
 		unsigned int m_addr;
 
 		// sessionIdの保管庫
-		std::string m_sesid;
+		//std::string m_sesid;
+		std::map<std::string, std::string> m_cookies;
 	};
 };

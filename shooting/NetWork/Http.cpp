@@ -87,7 +87,7 @@ string Http::GetData(string _url)
 	char rcv[256];
 
 	// GETリクエスト
-	sprintf_s(body, "GET http://%s%s HTTP/1.0\r\n\r\n”", m_sever, _url.c_str());
+	sprintf_s(body, "GET http://%s%s HTTP/1.0\r\n%s\r\n”", m_sever, GetCookies(), _url.c_str());
 	send(m_soc, body, (int)strlen(body), 0);
 
 	while (true)
@@ -125,7 +125,9 @@ void Http::HighScoreSeve(int _score ,string _url)
 	char body[256];
 	char str[256];
 	sprintf_s(body, "high=%d&name=%s", _score, (char*)Input::StreamManager::GetInstance()->GetId().c_str());
-	sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\n%s", m_sever, _url.c_str(), strlen(body), body);
+	//sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\n%s", m_sever, _url.c_str(), strlen(body), body);
+	sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n\%s\r\n%s", m_sever, _url.c_str(), strlen(body), GetCookies(), body);
+
 	send(m_soc, str, (int)strlen(str), 0);
 }
 
@@ -221,6 +223,22 @@ std::vector<std::string> Http::Match(std::string const & text, std::regex const 
 	return result;
 }
 
+std::string NetWork::Http::GetCookies()
+{
+	// 何もない場合
+	if (m_cookies.size() == 0) {
+		return "";
+	}
+
+	string cookie = "cookie:";
+	for (map<string, string>::iterator it = m_cookies.begin(); it != m_cookies.end(); it++)
+	{
+		cookie += it->first + "=" + it->second + ";";
+	}
+	cookie += "\r\n";
+	return cookie;
+}
+
 
 /// <summary>
 /// ログイン
@@ -275,10 +293,11 @@ string NetWork::Http::Login(wstring _id, wstring _pass)
 			unsigned int valEnd = values.find(";");
 			unsigned int point = valEnd - valState;
 			retuStr = values.substr(valState, point);
+			m_cookies[values.substr(0, valState - 1)] = retuStr;
 		}
 	}
 
-	m_sesid = retuStr;
+
 	std::string tmpData = strstr(tmp.c_str(), "\r\n\r\n\0");
 	std::string data = "\r\n\r\nok\0";
 	// 確認が取れない場合はfalse
