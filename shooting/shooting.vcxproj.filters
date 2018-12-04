@@ -20,6 +20,9 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{6499ec90-eca7-4c93-b565-6ce112dc8c1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{2b39a068-9ec3-418c-8a7e-456bc236a66a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -102,6 +105,9 @@
     <ClInclude Include="Utility\TextBox.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Animation\Animation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -175,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="Utility\TextBox.cpp">
       <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\Animation.cpp">
+      <Filter>Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
