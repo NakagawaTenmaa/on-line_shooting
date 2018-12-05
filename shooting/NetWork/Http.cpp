@@ -87,8 +87,7 @@ string Http::GetData(string _url)
 	char rcv[256];
 
 	// GETリクエスト
-	//sprintf_s(body, "GET http://%sHTTP/1.0\r\n%s\r\n”", m_sever, _url.c_str());
-	sprintf_s(body, "GET http://%s%s HTTP/1.0\r\n\r\n”", m_sever, _url.c_str());
+	sprintf_s(body, "GET http://%s%s HTTP/1.0\r\n%s\r\n”", m_sever, _url.c_str(), GetCookies().c_str());
 	send(m_soc, body, (int)strlen(body), 0);
 
 	while (true)
@@ -122,11 +121,9 @@ string Http::GetData(string _url)
 /// <param name="_score"></param>
 void Http::HighScoreSeve(int _score ,string _url)
 {
-	// GETリクエスト
 	char body[256];
 	char str[256];
 	sprintf_s(body, "high=%d&name=%s", _score, Input::StreamManager::GetInstance()->GetId().c_str());
-	//sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\n%s", m_sever, _url.c_str(), strlen(body), body);
 	sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n\%s\r\n%s", m_sever, _url.c_str(), strlen(body), GetCookies().c_str(), body);
 
 	send(m_soc, str, (int)strlen(str), 0);
@@ -257,7 +254,7 @@ string NetWork::Http::Login(wstring _id, wstring _pass)
 	string id = cv.to_bytes(_id);
 	string pass = cv.to_bytes(_pass);
 	sprintf_s(body, "userid=%s&password=%s", id.c_str(), pass.c_str());
-	sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\n%s", m_sever, "/php/shooting/Login.php", strlen(body), body);
+	sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n%s\r\n%s", m_sever, "/php/shooting/Login.php", strlen(body), GetCookies().c_str(), body);
 	send(m_soc, str, (int)strlen(str), 0);
 
 	while (true)
