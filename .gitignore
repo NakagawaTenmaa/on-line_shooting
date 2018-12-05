@@ -1,4 +1,5 @@
 Debug/
 .vs/
 shooting.VC.VC.opendb
-/ipch/SHOOTING-86b8ac37/SHOOTING-eaa86fb7.ipch
+.ipch
+ipch/SHOOTING-86b8ac37/SHOOTING-eaa86fb7.ipch
