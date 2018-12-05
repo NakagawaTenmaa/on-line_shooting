@@ -87,7 +87,8 @@ string Http::GetData(string _url)
 	char rcv[256];
 
 	// GETリクエスト
-	sprintf_s(body, "GET http://%s%s HTTP/1.0\r\n%s\r\n”", m_sever, GetCookies(), _url.c_str());
+	//sprintf_s(body, "GET http://%sHTTP/1.0\r\n%s\r\n”", m_sever, _url.c_str());
+	sprintf_s(body, "GET http://%s%s HTTP/1.0\r\n\r\n”", m_sever, _url.c_str());
 	send(m_soc, body, (int)strlen(body), 0);
 
 	while (true)
@@ -124,9 +125,9 @@ void Http::HighScoreSeve(int _score ,string _url)
 	// GETリクエスト
 	char body[256];
 	char str[256];
-	sprintf_s(body, "high=%d&name=%s", _score, (char*)Input::StreamManager::GetInstance()->GetId().c_str());
+	sprintf_s(body, "high=%d&name=%s", _score, Input::StreamManager::GetInstance()->GetId().c_str());
 	//sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\n%s", m_sever, _url.c_str(), strlen(body), body);
-	sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n\%s\r\n%s", m_sever, _url.c_str(), strlen(body), GetCookies(), body);
+	sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n\%s\r\n%s", m_sever, _url.c_str(), strlen(body), GetCookies().c_str(), body);
 
 	send(m_soc, str, (int)strlen(str), 0);
 }
@@ -230,7 +231,7 @@ std::string NetWork::Http::GetCookies()
 		return "";
 	}
 
-	string cookie = "cookie:";
+	string cookie = "cookie: ";
 	for (map<string, string>::iterator it = m_cookies.begin(); it != m_cookies.end(); it++)
 	{
 		cookie += it->first + "=" + it->second + ";";
