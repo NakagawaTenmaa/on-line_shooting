@@ -183,9 +183,9 @@ void Input::StreamManager::Render(DirectX::SimpleMath::Vector2 _pos, const std::
 /// パスの文字列取得
 /// </summary>
 /// <returns></returns>
-std::wstring Input::StreamManager::GetPass()
+std::string Input::StreamManager::GetPass()
 {
-	std::wstring str = L"";
+	std::string str = "";
 	for (std::vector<int*>::iterator it = m_strPass.begin(); it != m_strPass.end(); it++)
 	{
 		// 小文字変換
@@ -199,9 +199,9 @@ std::wstring Input::StreamManager::GetPass()
 /// IDの文字列取得
 /// </summary>
 /// <returns></returns>
-std::wstring Input::StreamManager::GetId()
+std::string Input::StreamManager::GetId()
 {
-	std::wstring str = L"";
+	std::string str;
 	for (std::vector<int*>::iterator it = m_strId.begin(); it != m_strId.end(); it++)
 	{
 		// 小文字変換
