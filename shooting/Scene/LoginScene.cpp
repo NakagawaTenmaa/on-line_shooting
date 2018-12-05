@@ -64,8 +64,7 @@ bool LoginScene::Update()
 				if (NetWork::Http::GetInstance()->Login(Input::StreamManager::GetInstance()->GetPass(), Input::StreamManager::GetInstance()->GetId()) != "")
 				{
 					// ログイン成功だとタイトルへ移動
-					std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> cv;
-					UserData::m_name = cv.to_bytes(Input::StreamManager::GetInstance()->GetId());
+					UserData::m_name = Input::StreamManager::GetInstance()->GetId();
 					m_fadeFlag = true;
 				}
 				else

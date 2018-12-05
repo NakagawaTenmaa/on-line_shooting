@@ -44,7 +44,7 @@ string Json::JsonToData(string _data)
 	if (!err.empty())
 	{
 		return string();
-	}
+	}	
 	return json;
 }
 
