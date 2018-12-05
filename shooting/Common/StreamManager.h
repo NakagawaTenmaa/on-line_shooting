@@ -34,8 +34,8 @@ namespace Input
 		void Render(DirectX::SimpleMath::Vector2 _pos, const std::string _str);
 
 		// getter
-		std::wstring GetPass();
-		std::wstring GetId();
+		std::string GetPass();
+		std::string GetId();
 	private:
 		// コンストラクタ
 		StreamManager();

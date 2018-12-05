@@ -114,18 +114,21 @@ string Http::GetData(string _url)
 	return str;
 }
 
-
-/// <summary>
-/// ハイスコアの記録
-/// </summary>
-/// <param name="_score"></param>
-void Http::HighScoreSeve(int _score ,string _url)
+void NetWork::Http::SendData(std::map<std::string, std::string> _data, string _url)
 {
-	char body[256];
+	//char body[256];
 	char str[256];
-	sprintf_s(body, "high=%d&name=%s", _score, Input::StreamManager::GetInstance()->GetId().c_str());
-	sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n\%s\r\n%s", m_sever, _url.c_str(), strlen(body), GetCookies().c_str(), body);
+	string body = "";
+ 	for (map<string, string>::iterator it = _data.begin(); it != _data.end(); it++)
+	{
+		body += it->first + "=" + it->second;
+		if (it != _data.end()) 	body += "&";
+	}
+	body += "\r\n";
 
+	// Response作成
+	sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n\%s\r\n%s", m_sever, _url.c_str(), strlen(body.c_str()), GetCookies().c_str(), body.c_str());
+	// 送信
 	send(m_soc, str, (int)strlen(str), 0);
 }
 
@@ -244,16 +247,13 @@ std::string NetWork::Http::GetCookies()
 /// <param name="_id">ID</param>
 /// <param name="_poss">パスワード</param>
 /// <returns></returns>
-string NetWork::Http::Login(wstring _id, wstring _pass)
+string NetWork::Http::Login(string _id, string _pass)
 {
 	char str[256];
 	char body[256];
 	char rcv[256];
 	string tmp = "";
-	wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> cv;
-	string id = cv.to_bytes(_id);
-	string pass = cv.to_bytes(_pass);
-	sprintf_s(body, "userid=%s&password=%s", id.c_str(), pass.c_str());
+	sprintf_s(body, "userid=%s&password=%s", _id.c_str(), _pass.c_str());
 	sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n%s\r\n%s", m_sever, "/php/shooting/Login.php", strlen(body), GetCookies().c_str(), body);
 	send(m_soc, str, (int)strlen(str), 0);
 
@@ -306,3 +306,5 @@ string NetWork::Http::Login(wstring _id, wstring _pass)
 	}
 	return "";
 }
+
+// 連想配列

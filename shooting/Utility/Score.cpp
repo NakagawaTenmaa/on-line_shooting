@@ -1,6 +1,7 @@
 ﻿#include "Score.h"
 #include "../NetWork/Http.h"
 #include "../Common/DrawManager.h"
+#include "../Common/StreamManager.h"
 
 using namespace DirectX::SimpleMath;
 
@@ -84,8 +85,13 @@ void Score::ReScore()
 void Score::SeveHighScore()
 {
 	NetWork::Http::GetInstance()->Initialize();
-	NetWork::Http::GetInstance()->HighScoreSeve(Score::GetInstance()->GetScore(), "/php/shooting/HishScore/SetHighScore.php");
+	std::map<std::string, std::string> data;
+	char str[256];
 
+	sprintf_s(str,"%d", GetScore());
+	data["high"] = str;
+	data["name"] = Input::StreamManager::GetInstance()->GetId();
+	NetWork::Http::GetInstance()->SendData(data,"/php/shooting/HishScore/SetHighScore.php");
 }
 
 /// <summary>
