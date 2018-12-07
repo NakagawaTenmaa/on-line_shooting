@@ -61,6 +61,13 @@ EnemyManager::~EnemyManager()
 		delete m_data[i];
 		m_data[i] = nullptr;
 	}
+	for (std::list<Animation*>::iterator it = m_explosion.begin(); it != m_explosion.end(); it++)
+	{
+		delete (*it);
+		(*it) = nullptr;
+	}
+	m_explosion.clear();
+
 }
 
 /// <summary>
@@ -81,6 +88,7 @@ bool EnemyManager::Update()
 		{
 			if (!(*it)->Update())
 			{
+				m_explosion.push_back(new Animation(6, RECT{ 0,0,128,128 }, L"Resources/explosion.png", (*it)->GetPosition(), 5));
 				delete (*it);
 				(*it) = nullptr;
 			}
@@ -95,6 +103,23 @@ bool EnemyManager::Update()
 				m_timer = 0;
 			}
 		}
+	}
+
+	std::list<Animation*> deletetmp;
+	// 爆発の更新
+	for (std::list<Animation*>::iterator it = m_explosion.begin(); it != m_explosion.end(); it++)
+	{
+		if ((*it)->Update())
+		{
+			deletetmp.push_back(*it);
+		}
+	}
+	// 爆発の削除
+	for (auto it = deletetmp.begin(); it != deletetmp.end(); it++)
+	{		
+		m_explosion.remove((*it));
+		delete (*it);
+		(*it) = nullptr;		
 	}
 	return true;
 }
@@ -111,6 +136,11 @@ void EnemyManager::Render()
 		{
 			(*it)->Render();
 		}
+	}
+	// 爆発の描画
+	for (std::list<Animation*>::iterator it = m_explosion.begin(); it != m_explosion.end(); it++)
+	{
+		if((*it) != nullptr)(*it)->Render();
 	}
 }
 

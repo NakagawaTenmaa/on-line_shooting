@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Object.h"
+#include "../Animation/Animation.h"
 
 /// <summary>
 /// “GƒNƒ‰ƒX
