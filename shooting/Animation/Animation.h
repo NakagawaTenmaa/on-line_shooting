@@ -13,7 +13,7 @@ public:
 	// 更新
 	void Update();
 	// 描画
-	void Render();
+	void Render(DirectX::SimpleMath::Vector2 _pos);
 
 private:
 	// 時間計測

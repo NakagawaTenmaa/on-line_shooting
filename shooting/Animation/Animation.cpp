@@ -20,6 +20,7 @@ Animation::Animation(int _size, RECT _rect, wchar_t *_fileName,int _time)
 	m_time = _time;
 	m_timeCount = 0;
 	m_count = 0;
+	m_timer = 0;
 }
 
 /// <summary>
@@ -35,10 +36,14 @@ Animation::~Animation()
 void Animation::Update()
 {
 	m_timer += Timer();
-	if (m_time > m_timer)
+	if (m_time < m_timer)
 	{
 		// 描画画像の変更
 		m_count++;
+		if (m_count  >= m_size )
+		{
+			m_count = 0;
+		}
 		m_timer = 0;
 	}
 }
@@ -46,10 +51,10 @@ void Animation::Update()
 /// <summary>
 /// 描画
 /// </summary>
-void Animation::Render()
+void Animation::Render(DirectX::SimpleMath::Vector2 _pos)
 {	
 	// 画像の切り取りサイズ
-	LONG    left = m_rect.left * m_count;
+	LONG    left = (m_rect.left + m_rect.right) * m_count;
 	LONG    top  = m_rect.top;
 	LONG    right  = left + m_rect.right;
 	LONG    bottom = top + m_rect.bottom;
@@ -58,6 +63,7 @@ void Animation::Render()
 	RECT rect = {left,top,right,bottom };
 	
 	m_image.SetRect(rect);
+	m_image.SetPos(_pos);
 	Draw::DrawManager::GetInstance()->Render(m_image);
 }
 
