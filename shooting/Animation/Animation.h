@@ -6,7 +6,7 @@ class Animation
 public:
 	// コンストラクタ
 	Animation();
-	Animation(int _row, int _column, int _size, RECT _rect, wchar_t *_fileName, int _time = 1);
+	Animation(int _size, RECT _rect, wchar_t *_fileName, int _time = 1);
 	// デストラクタ
 	~Animation();
 
@@ -22,16 +22,15 @@ private:
 private:
 	// 画像
 	Draw::DrawData m_image;
-	// 行
-	int m_row;
-	// 列
-	int m_column;
+
 	// 画像
 	int m_size;
 	// 画像サイズ
 	RECT m_rect;
-	// 時間
+	// 切り替え時間
 	int m_time;
+	// 経過時間
+	int m_timer;
 	// 何枚目
 	int m_count;
 	// 時間計測用

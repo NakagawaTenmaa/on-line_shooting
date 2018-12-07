@@ -12,11 +12,9 @@ Animation::Animation(){}
 /// <param name="_row">     行</param>
 /// <param name="_column">  列</param>
 /// <param name="_fileName">ファイル名</param>
-Animation::Animation(int _row, int _column, int _size, RECT _rect, wchar_t *_fileName,int _time)
+Animation::Animation(int _size, RECT _rect, wchar_t *_fileName,int _time)
 {
 	Draw::DrawManager::GetInstance()->LoadTexture(m_image, _fileName);
-	m_row = _row;
-	m_column = _column;
 	m_size = _size;
 	m_rect = _rect;
 	m_time = _time;
@@ -36,11 +34,12 @@ Animation::~Animation()
 /// </summary>
 void Animation::Update()
 {
-	m_time += Timer();
-	if (m_time > 10)
+	m_timer += Timer();
+	if (m_time > m_timer)
 	{
-
-		m_time = 0;
+		// 描画画像の変更
+		m_count++;
+		m_timer = 0;
 	}
 }
 
@@ -48,7 +47,17 @@ void Animation::Update()
 /// 描画
 /// </summary>
 void Animation::Render()
-{
+{	
+	// 画像の切り取りサイズ
+	LONG    left = m_rect.left * m_count;
+	LONG    top  = m_rect.top;
+	LONG    right  = left + m_rect.right;
+	LONG    bottom = top + m_rect.bottom;
+
+	// 画像の描画位置
+	RECT rect = {left,top,right,bottom };
+	
+	m_image.SetRect(rect);
 	Draw::DrawManager::GetInstance()->Render(m_image);
 }
 
