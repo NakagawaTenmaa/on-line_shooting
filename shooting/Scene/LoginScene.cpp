@@ -28,6 +28,11 @@ LoginScene::LoginScene()
 	Draw::DrawManager::GetInstance()->LoadTexture(m_back, L"Resources/loginback.png");
 	m_back.SetRect(600, 800);
 
+	// 画像の読み込み
+	Draw::DrawManager::GetInstance()->LoadTexture(m_nouser, L"Resources/nouser.png");
+	m_nouser.SetPos(DirectX::SimpleMath::Vector2(200, 300));
+	m_nouser.SetRect(256, 256);
+
 	m_fadeFlag = false;
 }
 
@@ -71,13 +76,20 @@ bool LoginScene::Update()
 				}
 				else
 				{
-					m_distination = ID;
+					m_distination = END;
 				}
 			}
 			catch (const std::exception&)
 			{
 				// 通信失敗
 			}
+		}
+	}
+	else if (m_distination == END) 
+	{
+		if (Input::InputManager::GetInstance()->GetKeyTracker().pressed.Enter)
+		{
+			m_distination = ID;
 		}
 	}
 
@@ -105,4 +117,10 @@ void LoginScene::Render()
 	// 入力文字
 	m_textBox->Render(DirectX::SimpleMath::Vector2(100,580));
 	Fade::Render();
+
+	// 確認が取れない場合のエラー画像
+	if (m_distination == END) 
+	{
+		Draw::DrawManager::GetInstance()->Render(m_nouser);
+	}
 }

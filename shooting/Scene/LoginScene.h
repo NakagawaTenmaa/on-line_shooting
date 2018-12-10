@@ -34,16 +34,18 @@ namespace Scene
 		void Render();
 
 	private:
-		// 背景S
+		// 背景
 		Draw::DrawData m_back;
 
 		DESTINATION m_distination;
 		
 		// テキストボックス
-		TextBox *m_textBox;
-		
+		TextBox *m_textBox;		
 
 		// フェード確認Flag
 		bool m_fadeFlag;
+
+		// ユーザー確認が取れない場合
+		Draw::DrawData m_nouser;
 	};
 };
