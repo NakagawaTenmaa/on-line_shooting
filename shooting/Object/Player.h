@@ -25,4 +25,7 @@ private:
 	static const int BULLET_SIZE;
 	int m_timer;
 	int m_power;
+
+	// 画像の状態
+	byte m_imageState;
 };

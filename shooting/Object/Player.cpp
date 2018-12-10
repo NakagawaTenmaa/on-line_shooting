@@ -30,7 +30,7 @@ Player::Player()
 	m_power = 1;
 
 	// 描画設定
-	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/Myplayer.png");
+	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/player.png");
 	m_image.SetPos(m_date.position);
 	m_image.SetRect((LONG)m_size.x, (LONG)m_size.y);
 	m_image.SetOrigin(m_size.x / 2, m_size.y / 2);
@@ -74,11 +74,17 @@ bool Player::Update()
 	// 移動処理
 	if (Input::InputManager::GetInstance()->GetKeyState().Right && (m_date.position.x < 600 - m_size.x / 2))
 	{
+		m_imageState = 0x01;
 		m_date.vel.x = m_date.speed;
 	}
 	else if (Input::InputManager::GetInstance()->GetKeyState().Left && (m_date.position.x > 0 + m_size.x / 2))
 	{
+		m_imageState = 0x02;
 		m_date.vel.x = -m_date.speed;
+	}
+	else
+	{
+		m_imageState = 0x00;
 	}
 	
 	for (vector<Bullet*>::iterator it = m_bullet.begin(); it != m_bullet.end(); it++)
@@ -135,5 +141,7 @@ void Player::Render()
 			(*it)->Render();
 		}
 	}
+
+	m_image.SetRect(m_size.x * m_imageState, m_size.y * 0, m_size.x * m_imageState + m_size.x, m_size.y * 0 + m_size.y);
 	Draw::DrawManager::GetInstance()->Render(m_image);
 }
