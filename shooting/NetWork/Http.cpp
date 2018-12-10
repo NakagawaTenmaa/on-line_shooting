@@ -274,6 +274,7 @@ string NetWork::Http::Login(string _id, string _pass)
 			break;
 		}
 	}
+	std::string tmpData = strstr(tmp.c_str(), "\r\n\r\n\0");
 
 	string retuStr = "";
 	string header = tmp.substr(0, tmp.find("\r\n\r\n"));
@@ -296,13 +297,12 @@ string NetWork::Http::Login(string _id, string _pass)
 	}
 
 
-	std::string tmpData = strstr(tmp.c_str(), "\r\n\r\n\0");
+	
 	std::string data = "\r\n\r\nok\0";
 	// 確認が取れない場合はfalse
 	if (data == tmpData)
 	{
-		return retuStr;
-
+		return "ok";
 	}
 	return "";
 }

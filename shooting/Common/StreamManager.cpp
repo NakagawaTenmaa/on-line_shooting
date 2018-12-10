@@ -207,5 +207,7 @@ std::string Input::StreamManager::GetId()
 		// 小文字変換
 		str += *(*it) + 0x61;
 	}
+
+
 	return str;
 }

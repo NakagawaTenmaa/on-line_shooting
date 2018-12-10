@@ -5,7 +5,6 @@
 #include "../NetWork/Http.h"
 #include "../NetWork/Json.h"
 #include "../Utility/Collision.h"
-//#include "../Utility/Other.h"
 
 using namespace std;
 using namespace DirectX::SimpleMath;

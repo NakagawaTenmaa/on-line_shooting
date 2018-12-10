@@ -5,7 +5,6 @@
 #include "../NetWork/Http.h"
 #include "../NetWork/Json.h"
 
-//#include "../Utility/Collision.h"
 using namespace DirectX::SimpleMath;
 
 // 静的変数の初期化
@@ -17,14 +16,12 @@ int EnemyManager::POP_ENEMY = 4;
 /// </summary>
 EnemyManager::EnemyManager()
 {
-	// 敵の種類	(DBのカラムから取得 理想)
-	m_size = 4;
-	m_data.resize(m_size, nullptr);
-
 	// データを取得し登録
 	NetWork::Http::GetInstance()->Initialize();
 	std::string tmp = NetWork::Http::GetInstance()->GetData("/php/shooting/EnemyList.php");
 	picojson::array data = Json::StrToVal(Json::JsonToData(Json::JsonToData(tmp)));
+	m_size = data.size();
+	m_data.resize(m_size, nullptr);
 	for (int i = 0; i < m_size; i++)
 	{
 		picojson::object &object = data[i].get<picojson::object>();
