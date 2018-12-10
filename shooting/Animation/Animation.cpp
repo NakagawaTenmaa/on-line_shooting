@@ -27,6 +27,7 @@ Animation::Animation(int _size, RECT _rect, wchar_t * _fileName, DirectX::Simple
 {
 	Draw::DrawManager::GetInstance()->LoadTexture(m_image, _fileName);
 	m_image.SetPos(_pos);
+	m_image.SetOrigin(_rect.right / 2, _rect.top / 2);
 	m_size = _size;
 	m_rect = _rect;
 	m_time = _time;
