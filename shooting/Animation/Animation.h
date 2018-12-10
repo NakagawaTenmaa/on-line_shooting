@@ -7,18 +7,16 @@ public:
 	// コンストラクタ
 	Animation();
 	Animation(int _size, RECT _rect, wchar_t *_fileName, int _time = 1);
+	Animation(int _size, RECT _rect, wchar_t *_fileName, DirectX::SimpleMath::Vector2 _pos ,int _time = 1);
 	// デストラクタ
 	~Animation();
 
 	// 更新
-	void Update();
+	bool Update();
+	
 	// 描画
-	void Render(DirectX::SimpleMath::Vector2 _pos);
-
-private:
-	// 時間計測
-	int Timer();
-
+	void Render(DirectX::SimpleMath::Vector2 _pos);	
+	void Render();
 private:
 	// 画像
 	Draw::DrawData m_image;
@@ -28,11 +26,11 @@ private:
 	// 画像サイズ
 	RECT m_rect;
 	// 切り替え時間
-	int m_time;
+	float m_time;
 	// 経過時間
-	int m_timer;
+	float m_timer;
 	// 何枚目
 	int m_count;
 	// 時間計測用
-	int m_timeCount;
+	float m_timeCount;
 };

@@ -11,7 +11,7 @@ using namespace DirectX::SimpleMath;
 /// コンストラクタ
 /// </summary>
 /// <param name="_pos">位置</param>
-/// <param name="_speed">速さ</param>
+/// <param name="_speed">速さ</param>S
 /// <param name="_hp">体力</param>
 /// <param name="_id">ID</param>
 Enemy::Enemy(DirectX::SimpleMath::Vector2 _pos, float _speed, int _hp, int _id,int _score)
@@ -23,7 +23,7 @@ Enemy::Enemy(DirectX::SimpleMath::Vector2 _pos, float _speed, int _hp, int _id,i
 	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/enemy.png");
 	
 	m_size = Vector2(128, 128);
-
+	
 	// 画像の切り取り
 	switch (_id)
 	{

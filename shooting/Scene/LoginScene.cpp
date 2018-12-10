@@ -36,6 +36,8 @@ LoginScene::LoginScene()
 /// </summary>
 LoginScene::~LoginScene()
 {
+	delete m_textBox;
+	m_textBox = nullptr;
 }
 
 /// <summary>

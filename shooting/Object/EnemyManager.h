@@ -1,7 +1,9 @@
 ﻿#pragma once
 
+#include <list>
 #include <vector>
 #include "Enemy.h"
+#include "../Animation/Animation.h"
 //#include "../Object/Meteorite.h"
 
 /// <summary>
@@ -66,4 +68,6 @@ private:
 	static int MAX_ENEMY;
 	// 敵の出現間隔
 	static int POP_ENEMY;
+	// 爆発リスト
+	std::list<Animation*> m_explosion;
 };

@@ -23,6 +23,19 @@ Animation::Animation(int _size, RECT _rect, wchar_t *_fileName,int _time)
 	m_timer = 0;
 }
 
+Animation::Animation(int _size, RECT _rect, wchar_t * _fileName, DirectX::SimpleMath::Vector2 _pos, int _time)
+{
+	Draw::DrawManager::GetInstance()->LoadTexture(m_image, _fileName);
+	m_image.SetPos(_pos);
+	m_image.SetOrigin(_rect.right / 2, _rect.top / 2);
+	m_size = _size;
+	m_rect = _rect;
+	m_time = _time;
+	m_timeCount = 0;
+	m_count = 0;
+	m_timer = 0;
+}
+
 /// <summary>
 /// デストラクタ
 /// </summary>
@@ -33,9 +46,9 @@ Animation::~Animation()
 /// <summary>
 /// 更新
 /// </summary>
-void Animation::Update()
+bool Animation::Update()
 {
-	m_timer += Timer();
+	m_timer++;
 	if (m_time < m_timer)
 	{
 		// 描画画像の変更
@@ -43,9 +56,11 @@ void Animation::Update()
 		if (m_count  >= m_size )
 		{
 			m_count = 0;
+			return true;
 		}
 		m_timer = 0;
 	}
+	return false;
 }
 
 /// <summary>
@@ -67,16 +82,21 @@ void Animation::Render(DirectX::SimpleMath::Vector2 _pos)
 	Draw::DrawManager::GetInstance()->Render(m_image);
 }
 
+
 /// <summary>
-/// 一秒計測
+/// 描画
 /// </summary>
-/// <returns></returns>
-int Animation::Timer()
-{
-	m_timeCount++;
-	if(m_timeCount > 60){
-		m_timeCount = 0;
-		return 1;
-	}
-	return 0;
+void Animation::Render()
+{	
+	// 画像の切り取りサイズ
+	LONG    left = (m_rect.left + m_rect.right) * m_count;
+	LONG    top  = m_rect.top;
+	LONG    right  = left + m_rect.right;
+	LONG    bottom = top + m_rect.bottom;
+
+	// 画像の描画位置
+	RECT rect = {left,top,right,bottom };
+	
+	m_image.SetRect(rect);
+	Draw::DrawManager::GetInstance()->Render(m_image);
 }
