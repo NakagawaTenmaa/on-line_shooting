@@ -44,10 +44,10 @@ void Game::Initialize(HWND window, int width, int height)
 	Fade::Initialize();
 	// ‰ŠúƒV[ƒ“‚Ì“o˜^
 
-	//Scene::SceneManager::GetInstance()->AddScene(new Scene::PlayScene());
-	Scene::SceneManager::GetInstance()->AddScene(new Scene::LoginScene());
-	//Scene::SceneManager::GetInstance()->AddScene(new Scene::TitleScene());
-	//Scene:S:SceneManager::GetInstance()->AddScene(new Scene::DownloadScene());
+	//Scene::SceneManager::GetInstance()->ChangeScene(new Scene::PlayScene());
+	Scene::SceneManager::GetInstance()->ChangeScene(new Scene::LoginScene());
+	//Scene::SceneManager::GetInstance()->ChangeScene(new Scene::TitleScene());
+	//Scene:S:SceneManager::GetInstance()->ChangeScene(new Scene::DownloadScene());
 }
 
 #pragma region Frame Update

@@ -49,7 +49,7 @@ LoginScene::~LoginScene()
 /// 更新
 /// </summary>
 /// <returns> 継続確認 </returns>
-bool LoginScene::Update()
+void LoginScene::Update()
 {
 	if (m_distination == ID)
 	{
@@ -99,11 +99,9 @@ bool LoginScene::Update()
 		float a = Fade::GetA();
 		if (a >= 1.0f)
 		{
-			SceneManager::GetInstance()->AddScene(new DownloadScene());
-			return false;
+			SceneManager::GetInstance()->ChangeScene(new DownloadScene());
 		}
 	}
-	return true;
 }
 
 /// <summary>

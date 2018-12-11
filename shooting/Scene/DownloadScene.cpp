@@ -40,11 +40,10 @@ DownloadScene::~DownloadScene(){}
 /// 更新
 /// </summary>
 /// <returns>継続確認</returns>
-bool DownloadScene::Update()
+void DownloadScene::Update()
 {
 	// シーンの移行
-	Scene::SceneManager::GetInstance()->AddScene(new TitleScene());
-	return false;
+	Scene::SceneManager::GetInstance()->ChangeScene(new TitleScene());
 }
 
 /// <summary>

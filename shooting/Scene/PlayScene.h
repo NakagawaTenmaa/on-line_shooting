@@ -20,7 +20,7 @@ namespace Scene
 		~PlayScene();
 
 		// 更新
-		bool Update() override;
+		void Update() override;
 		// 描画
 		void Render() override;
 	private:

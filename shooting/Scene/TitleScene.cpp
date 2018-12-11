@@ -80,7 +80,7 @@ TitleScene::~TitleScene(){}
 /// 更新
 /// </summary>
 /// <returns>継続確認</returns>
-bool TitleScene::Update()
+void TitleScene::Update()
 {
 	Timer();
 	if (m_fadeFlag)
@@ -92,10 +92,8 @@ bool TitleScene::Update()
 	// キーが押されたらプレイ画面に移行
 	if (Input::InputManager::GetInstance()->GetKeyState().Space && Fade::GetA() < 0.1f)
 	{
-		Scene::SceneManager::GetInstance()->AddScene(new PlayScene());
-		return false;
+		Scene::SceneManager::GetInstance()->ChangeScene(new PlayScene());
 	}
-	return true;
 }
 
 /// <summary>

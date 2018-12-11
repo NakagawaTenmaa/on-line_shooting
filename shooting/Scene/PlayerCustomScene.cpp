@@ -20,9 +20,9 @@ PlayerCustomScene::~PlayerCustomScene()
 /// 更新
 /// </summary>
 /// <returns></returns>
-bool PlayerCustomScene::Update()
+void PlayerCustomScene::Update()
 {
-	return true;
+
 }
 
 /// <summary>

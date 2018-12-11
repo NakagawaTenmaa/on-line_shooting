@@ -29,7 +29,7 @@ namespace Scene
 		~LoginScene();
 
 		// 描画
-		bool Update();
+		void Update();
 		// 更新
 		void Render();
 

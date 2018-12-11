@@ -25,21 +25,16 @@ namespace Scene
 		void Renrer();
 
 		// シーンの追加
-		void AddScene(SceneBase* _task);
+		void ChangeScene(SceneBase* _scene);
 	private:
 		// コンストラクタ
-		SceneManager() {}
+		SceneManager();
 		// コピーコンストラクタ
 		SceneManager& operator=(SceneManager _val) {}
-		
-		// 削除タスクの実行
-		void RemoveTask();
 	private:
 		// 自身のポインタ
 		static SceneManager* m_instance;
-		// シーンの保管庫
-		std::list<SceneBase*> m_list;
-		// 削除シーン
-		std::list<SceneBase*> m_removeList;
+		// 現在のシーン
+		SceneBase* m_scene;
 	};
 };

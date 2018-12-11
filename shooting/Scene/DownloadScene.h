@@ -16,7 +16,7 @@ namespace Scene
 		~DownloadScene();
 
 		// 描画
-		bool Update() override;
+		void Update() override;
 		// 更新
 		void Render() override;
 	private:
