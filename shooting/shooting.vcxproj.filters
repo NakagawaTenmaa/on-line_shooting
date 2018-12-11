@@ -108,6 +108,9 @@
     <ClInclude Include="Animation\Animation.h">
       <Filter>Animation</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\PlayerCustomScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -184,6 +187,9 @@
     </ClCompile>
     <ClCompile Include="Animation\Animation.cpp">
       <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\PlayerCustomScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

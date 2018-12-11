@@ -202,6 +202,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Scene\PlayerCustomScene.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Scene\PlayScene.h">
       <SubType>
       </SubType>
@@ -268,6 +272,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Scene\LoginScene.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Scene\PlayerCustomScene.cpp">
       <SubType>
       </SubType>
     </ClCompile>
