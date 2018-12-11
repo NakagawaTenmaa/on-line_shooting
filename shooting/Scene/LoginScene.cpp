@@ -65,23 +65,17 @@ void LoginScene::Update()
 		if (Input::InputManager::GetInstance()->GetKeyTracker().pressed.Enter)
 		{
 			// ログイン処理
-			try
+
+			NetWork::Http::GetInstance()->Initialize();
+			if (NetWork::Http::GetInstance()->Login(Input::StreamManager::GetInstance()->GetPass(), Input::StreamManager::GetInstance()->GetId()) != "")
 			{
-				NetWork::Http::GetInstance()->Initialize();
-				if (NetWork::Http::GetInstance()->Login(Input::StreamManager::GetInstance()->GetPass(), Input::StreamManager::GetInstance()->GetId()) != "")
-				{
-					// ログイン成功だとタイトルへ移動
-					UserData::m_name = Input::StreamManager::GetInstance()->GetId();
-					m_fadeFlag = true;
-				}
-				else
-				{
-					m_distination = END;
-				}
+				// ログイン成功だとタイトルへ移動
+				UserData::m_name = Input::StreamManager::GetInstance()->GetId();
+				m_fadeFlag = true;
 			}
-			catch (const std::exception&)
+			else
 			{
-				// 通信失敗
+				m_distination = END;
 			}
 		}
 	}

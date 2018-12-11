@@ -62,13 +62,18 @@ TitleScene::TitleScene()
 	Draw::DrawManager::GetInstance()->LoadTexture(m_button, L"Resources/space.png");
 	m_button.SetPos(300 - 128, 650);
 	m_button.SetRect(256, 64);
-	m_button.SetOrigin(0, 0);
 
 	// 背景
 	Draw::DrawManager::GetInstance()->LoadTexture(m_back, L"Resources/titleback.png");
 	m_back.SetPos(0, 0);
 	m_back.SetRect(600, 800);
-	m_back.SetOrigin(0, 0);
+
+	// 選択
+	Draw::DrawManager::GetInstance()->LoadTexture(m_menu, L"Resources/menu.png");
+	
+	// カーソル
+	Draw::DrawManager::GetInstance()->LoadTexture(m_cursor, L"Resources/cursor.png");
+	m_cursor.SetRect(0, 0, 32, 32);
 }
 
 /// <summary>
@@ -114,6 +119,19 @@ void TitleScene::Render()
 	if (m_flag) Draw::DrawManager::GetInstance()->Render(m_button);
 
 	Score::GetInstance()->RankingRender(3);
+
+	Draw::DrawManager::GetInstance()->Render(m_cursor);
+
+	// 選択
+	m_menu.SetRect(0, 0, 128, 16);
+	m_menu.SetPos(DirectX::SimpleMath::Vector2(200,700));
+	Draw::DrawManager::GetInstance()->Render(m_menu);
+
+	m_menu.SetRect(0, 16, 128, 32);
+	m_menu.SetPos(DirectX::SimpleMath::Vector2(400, 700));
+	Draw::DrawManager::GetInstance()->Render(m_menu);
+	
+
 
 	for (int i = 0; i < 3; i++)
 	{
