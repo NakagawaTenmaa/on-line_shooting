@@ -21,12 +21,15 @@ Player::Player()
 	
 	// プレイヤーの初期化データ取得し設定
 	NetWork::Http::GetInstance()->Initialize();
-	std::map<std::string, picojson::value> initializeData = Json::Parse(NetWork::Http::GetInstance()->GetData("/php/shooting/PlayerConfig.php"));
+	// プレイヤーのID
+	map<string, string> data;
+	data["user_id"] = NetWork::Http::GetInstance()->GetUserId();
+	std::map<std::string, picojson::value> initializeData = Json::Parse(NetWork::Http::GetInstance()->SendData(data, "/php/shooting/PlayerConfig.php"));
 	m_date.position = Vector2((float)initializeData["posx"].get<double>(), (float)initializeData["posy"].get<double>());
 	m_date.speed = (float)initializeData["speed"].get<double>();
 	m_date.vel = Vector2::Zero;
 	m_date.r = 50 / 2;
-	m_power = 1;
+	m_power = atoi(initializeData["power"].get<std::string>().c_str());
 
 	// 描画設定
 	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/player.png");
@@ -143,4 +146,13 @@ void Player::Render()
 
 	m_image.SetRect(m_size.x * m_imageState, m_size.y * 0, m_size.x * m_imageState + m_size.x, m_size.y * 0 + m_size.y);
 	Draw::DrawManager::GetInstance()->Render(m_image);
+}
+
+/// <summary>
+/// 力
+/// </summary>
+/// <returns></returns>
+int Player::GetPower()
+{
+	return m_power;
 }

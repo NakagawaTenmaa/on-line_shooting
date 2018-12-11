@@ -7,6 +7,7 @@
 #include <regex>
 
 #include "Http.h"
+#include "Json.h"
 #include "../Common/StreamManager.h"
 
 using namespace std;
@@ -19,6 +20,15 @@ char Http::m_sever[] = "tenko117.verse.jp";
 string Http::m_extension = ".png";
 string Http::m_seveAdd = "Resources/";
 string Http::m_address = "http://tenko117.verse.jp";
+
+/// <summary>
+/// コンストラクタ
+/// </summary>
+NetWork::Http::Http()
+{
+	m_userId = "";
+}
+
 
 /// <summary>
 /// デストラクタ
@@ -114,10 +124,10 @@ string Http::GetData(string _url)
 	return str;
 }
 
-void NetWork::Http::SendData(std::map<std::string, std::string> _data, string _url)
+std::string NetWork::Http::SendData(std::map<std::string, std::string> _data, string _url)
 {
-	//char body[256];
-	char str[256];
+	char rcv[512];
+	char str[512];
 	string body = "";
  	for (map<string, string>::iterator it = _data.begin(); it != _data.end(); it++)
 	{
@@ -130,6 +140,30 @@ void NetWork::Http::SendData(std::map<std::string, std::string> _data, string _u
 	sprintf_s(str, "POST http://%s%s HTTP/1.0\r\nContent-Length:%d\r\nContent-Type: application/x-www-form-urlencoded\r\n\%s\r\n%s", m_sever, _url.c_str(), strlen(body.c_str()), GetCookies().c_str(), body.c_str());
 	// 送信
 	send(m_soc, str, (int)strlen(str), 0);
+
+	std::string receive = "";
+	while (true)
+	{
+		int re = 0;
+		memset(rcv, 0, sizeof(rcv));
+
+		re = recv(m_soc, rcv, (int)sizeof(rcv) - 1, 0);
+
+		receive += rcv;
+
+
+		if (re == 0)
+		{
+			break;
+		}
+		else if (re == SOCKET_ERROR)
+		{
+			printf("エラー\n");
+			break;
+		}
+	}
+
+	return receive;
 }
 
 /// <summary>
@@ -189,6 +223,7 @@ void Http::PngLoad(string _url, string _fileName)
 		tsize += rsize;
 	}
 }
+
 
 std::vector<std::string> Http::Search(std::string const & text, std::regex const & re)
 {
@@ -274,20 +309,21 @@ string NetWork::Http::Login(string _id, string _pass)
 			break;
 		}
 	}
-	std::string tmpData = strstr(tmp.c_str(), "\r\n\r\n\0");
-
+	
 	string retuStr = "";
 	string header = tmp.substr(0, tmp.find("\r\n\r\n"));
 	regex reline(R"(.+)");
 	regex tag("^(.+): ?(.*)$");
 	vector<string> lines = Search(header, reline);
 
-	for (int i = 1; i < (int)lines.size(); i++) {
+	for (int i = 1; i < (int)lines.size(); i++)
+	{
 		string line = lines[i];
 		vector<string> tags = Match(line, tag);
 		string key = tags[1];
 		string values = tags[2];
-		if (key == "Set-Cookie") {
+		if (key == "Set-Cookie")
+		{
 			unsigned int valState = values.find("=") + 1;
 			unsigned int valEnd = values.find(";");
 			unsigned int point = valEnd - valState;
@@ -295,16 +331,13 @@ string NetWork::Http::Login(string _id, string _pass)
 			m_cookies[values.substr(0, valState - 1)] = retuStr;
 		}
 	}
-
-
 	
-	std::string data = "\r\n\r\nok\0";
-	// 確認が取れない場合はfalse
-	if (data == tmpData)
+	std::string tmpData = strstr(tmp.c_str(), "\r\n\r\n\0");
+	std::map<std::string, picojson::value> data = Json::Parse(tmpData);
+	m_userId = data["id"].get<std::string>().c_str();
+	if (m_userId != "") 
 	{
 		return "ok";
 	}
 	return "";
 }
-
-// 連想配列

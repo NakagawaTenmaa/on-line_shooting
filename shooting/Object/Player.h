@@ -19,6 +19,9 @@ public:
 	bool Update();
 	// 描画
 	void Render();
+
+	// 力
+	int GetPower();
 private:
 	// 弾の管理
 	std::vector<Bullet*> m_bullet;

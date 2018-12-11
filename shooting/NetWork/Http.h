@@ -29,16 +29,18 @@ namespace NetWork
 		// データの取得
 		std::string GetData(std::string _url);
 		// データの送信
-		void SendData(std::map<std::string, std::string> _data, std::string _url);
+		std::string SendData(std::map<std::string, std::string> _data, std::string _url);
 		// Png画像の読み込み
 		void PngLoad(std::string _url, std::string _fileName);
 		// ログイン
 		std::string Login(std::string _id, std::string _pass);
 
-
+		std::string GetUserId() {
+			return m_userId; 
+		}
 	private:
 		// コンストラクタ
-		Http() {}
+		Http();
 		// コピーコンストラクタ
 		Http& operator=(Http _val) {}
 
@@ -74,5 +76,7 @@ namespace NetWork
 		// sessionIdの保管庫
 		//std::string m_sesid;
 		std::map<std::string, std::string> m_cookies;
+		// ユーザーID
+		std::string m_userId;
 	};
 };

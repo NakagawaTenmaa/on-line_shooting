@@ -47,7 +47,7 @@ void Game::Initialize(HWND window, int width, int height)
 	//Scene::SceneManager::GetInstance()->AddScene(new Scene::PlayScene());
 	Scene::SceneManager::GetInstance()->AddScene(new Scene::LoginScene());
 	//Scene::SceneManager::GetInstance()->AddScene(new Scene::TitleScene());
-	//Scene::SceneManager::GetInstance()->AddScene(new Scene::DownloadScene());
+	//Scene:S:SceneManager::GetInstance()->AddScene(new Scene::DownloadScene());
 }
 
 #pragma region Frame Update

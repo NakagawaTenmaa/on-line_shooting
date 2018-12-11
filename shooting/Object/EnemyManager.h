@@ -4,7 +4,8 @@
 #include <vector>
 #include "Enemy.h"
 #include "../Animation/Animation.h"
-//#include "../Object/Meteorite.h"
+
+class Player;
 
 /// <summary>
 /// 敵のステータス表
@@ -39,7 +40,7 @@ class EnemyManager
 {
 public:
 	// コンストラクタ
-	EnemyManager();
+	EnemyManager(Player *_player);
 	// デストラクタ
 	~EnemyManager();
 
@@ -70,4 +71,6 @@ private:
 	static int POP_ENEMY;
 	// 爆発リスト
 	std::list<Animation*> m_explosion;
+	// プレイヤー
+	Player *m_player;
 };

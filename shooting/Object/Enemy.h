@@ -18,6 +18,8 @@ public:
 	bool Update();
 	// •`‰æ
 	void Render();
+	// ƒ_ƒ[ƒW‚ğó‚¯‚é
+	void Damage(int _val);
 private:
 	// Hp
 	int m_hp;

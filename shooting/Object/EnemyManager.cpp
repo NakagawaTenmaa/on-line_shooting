@@ -4,6 +4,7 @@
 #include "../NetWork/picojson.h"
 #include "../NetWork/Http.h"
 #include "../NetWork/Json.h"
+#include "Player.h"
 
 using namespace DirectX::SimpleMath;
 
@@ -14,7 +15,7 @@ int EnemyManager::POP_ENEMY = 4;
 /// <summary>
 /// コンストラクタ
 /// </summary>
-EnemyManager::EnemyManager()
+EnemyManager::EnemyManager(Player* _player)
 {
 	// データを取得し登録
 	NetWork::Http::GetInstance()->Initialize();
@@ -36,6 +37,7 @@ EnemyManager::EnemyManager()
 
 	// 経過時間の初期化
 	m_timer = 0;
+	m_player = _player;
 }
 
 /// <summary>
@@ -77,12 +79,14 @@ bool EnemyManager::Update()
 	int time = Timer();
 	m_timer += time;
 
+	
 	int k = 0;
 	for (std::vector<Enemy*>::iterator it = m_enemyList.begin(); it != m_enemyList.end(); it++, k++)
 	{
 		// 敵の更新
 		if ((*it) != nullptr)
 		{
+			(*it)->Damage(m_player->GetPower());
 			if (!(*it)->Update())
 			{
 				m_explosion.push_back(new Animation(6, RECT{ 0,0,128,128 }, L"Resources/explosion.png", (*it)->GetPosition(), 5));

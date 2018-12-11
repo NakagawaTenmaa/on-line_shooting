@@ -66,20 +66,9 @@ bool Enemy::Update()
 		return false;
 	}
 
-	// ’e‚É“–‚½‚Á‚½
-	if (m_hitFlag == BULLET)
+	if (m_hp <= 0)
 	{
-		m_hp--;
-		if (m_hp <= 0)
-		{
-			Score::GetInstance()->AddScore(m_score);
-			//ItemList::GetInstance()->GetItem(ItemType::POWER_UP, m_date.position);
-			return false;
-		}
-		else 
-		{
-			SetHitFlag(NOME);
-		}
+		return false;
 	}
 	return true;
 }
@@ -91,4 +80,25 @@ void Enemy::Render()
 {
 	m_image.SetPos(m_date.position);
 	Draw::DrawManager::GetInstance()->Render(m_image);
+}
+
+/// <summary>
+/// ƒ_ƒ[ƒW
+/// </summary>
+/// <param name="_val">ó‚¯‚é—Ê</param>
+void Enemy::Damage(int _val)
+{
+	// ’e‚É“–‚½‚Á‚½
+	if (m_hitFlag == BULLET)
+	{
+		m_hp -= _val;
+		if (m_hp <= 0)
+		{
+			Score::GetInstance()->AddScore(m_score);
+		}
+		else
+		{
+			SetHitFlag(NOME);
+		}
+	}
 }

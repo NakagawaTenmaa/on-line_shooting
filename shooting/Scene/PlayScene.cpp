@@ -15,7 +15,7 @@ using namespace Scene;
 PlayScene::PlayScene()
 {
 	m_player = new Player();
-	m_enemyManager = new EnemyManager();
+	m_enemyManager = new EnemyManager(m_player);
 
 	Draw::DrawManager::GetInstance()->LoadTexture(m_back, L"Resources/playback.png");
 	m_back.SetRect(600, 800);
