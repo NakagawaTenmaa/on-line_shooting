@@ -45,8 +45,12 @@ PlayScene::~PlayScene()
 /// 更新
 /// </summary>
 /// <returns></returns>
-bool PlayScene::Update()
+void PlayScene::Update()
 {
+	// 敵の更新
+	m_enemyManager->Update();
+	// 当たり判定更新
+	Collision::GetInstance()->ExecHitCheck();
 	// プレイヤーの更新
 	if (m_player != nullptr)
 	{
@@ -55,21 +59,15 @@ bool PlayScene::Update()
 			delete m_player;
 			m_player = nullptr;
 
-			// タイトルシーンに移行
-			Scene::SceneManager::GetInstance()->AddScene(new TitleScene());
-						
+
 			// ハイスコアの更新
 			Score::GetInstance()->SeveHighScore();
 			Score::GetInstance()->ReScore();
-			return false;
+
+			// タイトルシーンに移行
+			Scene::SceneManager::GetInstance()->ChangeScene(new TitleScene());
 		}
 	}
-
-	// 敵の更新
-	m_enemyManager->Update();
-	// 当たり判定更新
-	Collision::GetInstance()->ExecHitCheck();
-	return true;
 }
 
 /// <summary>

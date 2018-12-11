@@ -9,16 +9,20 @@ SceneManager* SceneManager::m_instance = nullptr;
 using namespace std;
 
 /// <summary>
+/// コンストラクタ
+/// </summary>
+Scene::SceneManager::SceneManager()
+{
+	m_scene = nullptr;
+}
+
+/// <summary>
 /// デストラクタ
 /// </summary>
 SceneManager::~SceneManager()
 {
-	for (list<SceneBase*>::iterator it = m_list.begin(); it != m_list.end(); it++)
-	{
-		delete (*it);
-		(*it) = nullptr;
-	}
-	m_list.clear();
+	delete m_scene;
+	m_scene = nullptr;
 }
 
 /// <summary>
@@ -48,17 +52,8 @@ void SceneManager::DeleteInstance()
 /// </summary>
 void SceneManager::Update()
 {
-	// 消す予定のシーン削除
-	RemoveTask();
-
-	for (list<SceneBase*>::iterator it = m_list.begin(); it != m_list.end(); it++)
-	{
-		if (!(*it)->Update())
-		{
-			// 削除予約
-			m_removeList.push_back((*it));
-		}
-	}
+	// 更新
+	m_scene->Update();
 }
 
 /// <summary>
@@ -66,36 +61,25 @@ void SceneManager::Update()
 /// </summary>
 void SceneManager::Renrer()
 {
-	for (list<SceneBase*>::iterator it = m_list.begin(); it != m_list.end(); it++)
-	{
-		(*it)->RenderStart();
-		(*it)->Render();
-		(*it)->RenderEnd();
-	}
-}
-
-
-/// <summary>
-/// シーンの追加
-/// </summary>
-/// <param name="_task"> 追加したいタスク </param>
-void SceneManager::AddScene(SceneBase * _task)
-{
-	m_list.push_back(_task);
+	m_scene->RenderStart();
+	m_scene->Render();
+	m_scene->RenderEnd();
 }
 
 /// <summary>
-/// シーンの削除
+/// シーンの変更
 /// </summary>
-void SceneManager::RemoveTask()
+/// <param name="_scene"></param>
+void Scene::SceneManager::ChangeScene(SceneBase * _scene)
 {
-	for (list<SceneBase*>::iterator it = m_removeList.begin(); it != m_removeList.end(); it++)
+	// チェック
+	if (m_scene != nullptr)
 	{
-		m_list.remove((*it));
-		delete (*it);
-		(*it) = nullptr;
+		delete m_scene;
+		m_scene = nullptr;
 	}
-	// 削除リストを空にする
-	m_removeList.clear();
+	// 新規シーン
+	m_scene = _scene;
 }
+
 

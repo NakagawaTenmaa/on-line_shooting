@@ -14,7 +14,7 @@ namespace Scene
 		virtual ~SceneBase() {}
 
 		// 描画
-		virtual bool Update() = 0;
+		virtual void Update() = 0;
 		// 更新
 		virtual void Render() = 0;
 
