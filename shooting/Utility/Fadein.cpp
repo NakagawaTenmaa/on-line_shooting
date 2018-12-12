@@ -20,7 +20,7 @@ Fade::~Fade(){}
 /// </summary>
 void Fade::Initialize()
 {
-	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/back.png");
+	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/images/back.png");
 	m_image.SetOrigin(0, 0);
 	m_image.SetPos(0, 0);
 	m_image.SetRect(600, 800);

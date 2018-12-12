@@ -44,10 +44,5 @@ namespace Scene
 
 		// フェード
 		bool m_fadeFlag;
-
-		// カーソル
-		Draw::DrawData m_cursor;
-		// メニュー
-		Draw::DrawData m_menu;
 	};
 };

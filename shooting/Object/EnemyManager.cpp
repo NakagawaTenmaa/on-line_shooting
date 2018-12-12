@@ -89,7 +89,7 @@ bool EnemyManager::Update()
 			(*it)->Damage(m_player->GetPower());
 			if (!(*it)->Update())
 			{
-				m_explosion.push_back(new Animation(6, RECT{ 0,0,128,128 }, L"Resources/explosion.png", (*it)->GetPosition(), 5));
+				m_explosion.push_back(new Animation(6, RECT{ 0,0,128,128 }, L"Resources/images/explosion.png", (*it)->GetPosition(), 5));
 				delete (*it);
 				(*it) = nullptr;
 			}

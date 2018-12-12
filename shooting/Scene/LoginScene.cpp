@@ -25,11 +25,11 @@ LoginScene::LoginScene()
 	m_distination = ID;
 
 	// 画像の読み込み
-	Draw::DrawManager::GetInstance()->LoadTexture(m_back, L"Resources/loginback.png");
+	Draw::DrawManager::GetInstance()->LoadTexture(m_back, L"Resources/images/loginback.png");
 	m_back.SetRect(600, 800);
 
 	// 画像の読み込み
-	Draw::DrawManager::GetInstance()->LoadTexture(m_nouser, L"Resources/nouser.png");
+	Draw::DrawManager::GetInstance()->LoadTexture(m_nouser, L"Resources/images/nouser.png");
 	m_nouser.SetPos(DirectX::SimpleMath::Vector2(200, 300));
 	m_nouser.SetRect(256, 256);
 
@@ -93,7 +93,7 @@ void LoginScene::Update()
 		float a = Fade::GetA();
 		if (a >= 1.0f)
 		{
-			SceneManager::GetInstance()->ChangeScene(new DownloadScene());
+			SceneManager::GetInstance()->ChangeScene(new TitleScene());
 		}
 	}
 }

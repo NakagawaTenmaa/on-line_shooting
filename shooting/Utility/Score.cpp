@@ -17,7 +17,7 @@ Score::Score()
 
 	// 画像の読み込み
 	m_size = Vector2(32, 32);
-	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/number.png");
+	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/images/number.png");
 	m_image.SetOrigin(0, 0);
 }
 

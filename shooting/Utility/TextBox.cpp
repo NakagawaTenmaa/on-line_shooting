@@ -8,11 +8,11 @@
 TextBox::TextBox()
 {
 	// 画像の読み込み
-	Draw::DrawManager::GetInstance()->LoadTexture(m_text, L"Resources/textbox.png");
+	Draw::DrawManager::GetInstance()->LoadTexture(m_text, L"Resources/images/textbox.png");
 	m_text.SetRect(128, 64);
 	m_text.SetPos(280, 390);
 	m_text.SetScale(2.0f, 0.6f);
-	Draw::DrawManager::GetInstance()->LoadTexture(m_back, L"Resources/loginstr.png");
+	Draw::DrawManager::GetInstance()->LoadTexture(m_back, L"Resources/images/loginstr.png");
 }
 
 /// <summary>
