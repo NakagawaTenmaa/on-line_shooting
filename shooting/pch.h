@@ -52,6 +52,7 @@
 #include <Effects.h>
 #include <PrimitiveBatch.h>
 #include <VertexTypes.h>
+#include <cri_adx2le.h>
 
 namespace DX
 {

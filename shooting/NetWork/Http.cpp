@@ -334,7 +334,12 @@ string NetWork::Http::Login(string _id, string _pass)
 	
 	std::string tmpData = strstr(tmp.c_str(), "\r\n\r\n\0");
 	std::map<std::string, picojson::value> data = Json::Parse(tmpData);
-	m_userId = data["id"].get<std::string>().c_str();
+
+	if(data["id"].is<std::string>())
+	{
+		m_userId = data["id"].get<std::string>().c_str();
+	}
+
 	if (m_userId != "") 
 	{
 		return "ok";

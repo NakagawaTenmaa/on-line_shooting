@@ -40,14 +40,11 @@ void Game::Initialize(HWND window, int width, int height)
 	// DrawManager‰Šú‰»
 	Draw::DrawManager::GetInstance()->Initialize();
 
+
+	// ‰ŠúƒV[ƒ“‚Ì“o˜^
+	Scene::SceneManager::GetInstance()->ChangeScene(new Scene::DownloadScene());
 	// ƒtƒF[ƒh‰Šú‰»
 	Fade::Initialize();
-	// ‰ŠúƒV[ƒ“‚Ì“o˜^
-
-	//Scene::SceneManager::GetInstance()->ChangeScene(new Scene::PlayScene());
-	Scene::SceneManager::GetInstance()->ChangeScene(new Scene::LoginScene());
-	//Scene::SceneManager::GetInstance()->ChangeScene(new Scene::TitleScene());
-	//Scene:S:SceneManager::GetInstance()->ChangeScene(new Scene::DownloadScene());
 }
 
 #pragma region Frame Update

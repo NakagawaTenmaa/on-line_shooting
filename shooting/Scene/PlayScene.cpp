@@ -17,7 +17,7 @@ PlayScene::PlayScene()
 	m_player = new Player();
 	m_enemyManager = new EnemyManager(m_player);
 
-	Draw::DrawManager::GetInstance()->LoadTexture(m_back, L"Resources/playback.png");
+	Draw::DrawManager::GetInstance()->LoadTexture(m_back, L"Resources/images/playback.png");
 	m_back.SetRect(600, 800);
 	m_back.SetColor(0.1f);
 	m_back.SetOrigin(0, 0);

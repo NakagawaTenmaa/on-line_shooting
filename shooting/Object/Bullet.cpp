@@ -14,7 +14,7 @@ Bullet::Bullet(){}
 Bullet::Bullet(DirectX::SimpleMath::Vector2 _pos)
 {
 	m_date.speed = 6;
-	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/bullet.png");
+	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/images/bullet.png");
 	m_size = DirectX::SimpleMath::Vector2(25, 25);
 	m_image.SetRect((LONG)m_size.x, (LONG)m_size.y);
 	m_image.SetOrigin(m_size.x / 2, m_size.y / 2);

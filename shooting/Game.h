@@ -12,9 +12,9 @@
 class Game : public DX::IDeviceNotify
 {
 public:
-
+	
     Game();
-
+	
     // Initialization and management
     void Initialize(HWND window, int width, int height);
 

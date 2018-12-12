@@ -20,7 +20,7 @@ Enemy::Enemy(DirectX::SimpleMath::Vector2 _pos, float _speed, int _hp, int _id,i
 	m_hp = _hp;
 	m_date.speed = _speed;
 
-	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/enemy.png");
+	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/images/enemy.png");
 	
 	m_size = Vector2(128, 128);
 	

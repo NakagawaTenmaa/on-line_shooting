@@ -32,7 +32,7 @@ Player::Player()
 	m_power = atoi(initializeData["power"].get<std::string>().c_str());
 
 	// 描画設定
-	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/player.png");
+	Draw::DrawManager::GetInstance()->LoadTexture(m_image, L"Resources/images/player.png");
 	m_image.SetPos(m_date.position);
 	m_image.SetRect((LONG)m_size.x, (LONG)m_size.y);
 	m_image.SetOrigin(m_size.x / 2, m_size.y / 2);

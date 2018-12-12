@@ -1,0 +1,56 @@
+﻿  pch.cpp
+  Animation.cpp
+Animation\Animation.cpp(20): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+Animation\Animation.cpp(30): warning C4244: '引数': 'LONG' から 'float' への変換です。データが失われる可能性があります。
+Animation\Animation.cpp(33): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+  DrawData.cpp
+  DrawManager.cpp
+  InputManager.cpp
+  StreamManager.cpp
+Common\StreamManager.cpp(162): warning C4189: 'k': ローカル変数が初期化されましたが、参照されていません
+Common\StreamManager.cpp(192): warning C4244: '引数': 'int' から 'char' への変換です。データが失われる可能性があります。
+Common\StreamManager.cpp(208): warning C4244: '引数': 'int' から 'char' への変換です。データが失われる可能性があります。
+  DeviceResources.cpp
+  Game.cpp
+c:\users\s172141\documents\github\on-line_shooting\shooting\Utility\Fadein.h(36): warning C4091: 'static ': 変数が何も宣言されていないときは、'Fade' の左辺を無視します。
+  Main.cpp
+  Http.cpp
+NetWork\Http.cpp(140): warning C4129: '%': エスケープ シーケンスとして正しく認識されませんでした。
+NetWork\Http.cpp(187): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\ucrt\stdio.h(207): note: 'fopen' の宣言を確認してください
+  Json.cpp
+  UserData.cpp
+  Bullet.cpp
+  Enemy.cpp
+Object\Enemy.cpp(30): warning C4244: '引数': 'float' から 'LONG' への変換です。データが失われる可能性があります。
+Object\Enemy.cpp(31): warning C4244: '引数': 'float' から 'LONG' への変換です。データが失われる可能性があります。
+Object\Enemy.cpp(32): warning C4244: '引数': 'float' から 'LONG' への変換です。データが失われる可能性があります。
+Object\Enemy.cpp(33): warning C4244: '引数': 'float' から 'LONG' への変換です。データが失われる可能性があります。
+  EnemyManager.cpp
+  Object.cpp
+  Player.cpp
+Object\Player.cpp(147): warning C4244: '引数': 'float' から 'LONG' への変換です。データが失われる可能性があります。
+  DownloadScene.cpp
+c:\users\s172141\documents\github\on-line_shooting\shooting\scene\../Utility/Fadein.h(36): warning C4091: 'static ': 変数が何も宣言されていないときは、'Fade' の左辺を無視します。
+  LoginScene.cpp
+c:\users\s172141\documents\github\on-line_shooting\shooting\scene\../Utility/Fadein.h(36): warning C4091: 'static ': 変数が何も宣言されていないときは、'Fade' の左辺を無視します。
+  PlayScene.cpp
+  PlayerCustomScene.cpp
+  コンパイル中...
+  SceneBase.cpp
+  SceneManager.cpp
+  TitleScene.cpp
+c:\users\s172141\documents\github\on-line_shooting\shooting\scene\../Utility/Fadein.h(36): warning C4091: 'static ': 変数が何も宣言されていないときは、'Fade' の左辺を無視します。
+  Collision.cpp
+  Fadein.cpp
+c:\users\s172141\documents\github\on-line_shooting\shooting\utility\Fadein.h(36): warning C4091: 'static ': 変数が何も宣言されていないときは、'Fade' の左辺を無視します。
+  Score.cpp
+  TextBox.cpp
+     ライブラリ C:\Users\s172141\Documents\github\on-line_shooting\Release\shooting.lib とオブジェクト C:\Users\s172141\Documents\github\on-line_shooting\Release\shooting.exp を作成中
+  コード生成しています。
+  0 of 2935 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  コード生成が終了しました。
+  shooting.vcxproj -> C:\Users\s172141\Documents\github\on-line_shooting\Release\shooting.exe
+  shooting.vcxproj -> C:\Users\s172141\Documents\github\on-line_shooting\Release\shooting.pdb (Full PDB)

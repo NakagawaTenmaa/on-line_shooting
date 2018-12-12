@@ -19,7 +19,7 @@ int StreamManager::IMAGE_SIZE = 32;
 StreamManager::StreamManager()
 {
 	// 文字画像の読み込み
-	Draw::DrawManager::GetInstance()->LoadTexture(m_strImage, L"Resources/string.png");
+	Draw::DrawManager::GetInstance()->LoadTexture(m_strImage, L"Resources/images/string.png");
 	m_strImage.SetOrigin(0, 0);
 	m_strImage.SetRect(IMAGE_SIZE, IMAGE_SIZE);
 	m_strImage.SetScale(0.8f, 0.8);
