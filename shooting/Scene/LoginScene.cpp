@@ -21,6 +21,9 @@ using namespace Scene;
 /// </summary>
 LoginScene::LoginScene()
 {
+	/*m_adx2le->LoadAcb(L"", L"");
+	m_adx2le->Play(0);*/
+
 	m_textBox = new TextBox();
 	m_distination = ID;
 

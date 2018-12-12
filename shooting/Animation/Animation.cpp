@@ -12,7 +12,7 @@ Animation::Animation(){}
 /// <param name="_row">     行</param>
 /// <param name="_column">  列</param>
 /// <param name="_fileName">ファイル名</param>
-Animation::Animation(int _size, RECT _rect, wchar_t *_fileName,int _time)
+Animation::Animation(int _size, RECT _rect, wchar_t *_fileName,float _time)
 {
 	Draw::DrawManager::GetInstance()->LoadTexture(m_image, _fileName);
 	m_size = _size;
@@ -23,11 +23,11 @@ Animation::Animation(int _size, RECT _rect, wchar_t *_fileName,int _time)
 	m_timer = 0;
 }
 
-Animation::Animation(int _size, RECT _rect, wchar_t * _fileName, DirectX::SimpleMath::Vector2 _pos, int _time)
+Animation::Animation(int _size, RECT _rect, wchar_t * _fileName, DirectX::SimpleMath::Vector2 _pos, float _time)
 {
 	Draw::DrawManager::GetInstance()->LoadTexture(m_image, _fileName);
 	m_image.SetPos(_pos);
-	m_image.SetOrigin(_rect.right / 2, _rect.top / 2);
+	m_image.SetOrigin((float)_rect.right / 2.0f, (float)_rect.top / 2.0f);
 	m_size = _size;
 	m_rect = _rect;
 	m_time = _time;

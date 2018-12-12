@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include "../Sound/ADX2LePlayer.h"
+
 namespace Scene
 {
 	/// <summary>
@@ -9,7 +11,7 @@ namespace Scene
 	{
 	public:
 		// コンストラクタ
-		SceneBase() {}
+		SceneBase();
 		// デストラクタ
 		virtual ~SceneBase() {}
 
@@ -23,5 +25,8 @@ namespace Scene
 		// 終了
 		virtual void RenderEnd();
 	private:
+	protected:
+		// サウンド
+		ADX2Le *m_adx2le;
 	};
 };

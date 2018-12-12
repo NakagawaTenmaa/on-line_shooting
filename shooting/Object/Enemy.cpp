@@ -27,10 +27,10 @@ Enemy::Enemy(DirectX::SimpleMath::Vector2 _pos, float _speed, int _hp, int _id,i
 	// âÊëúÇÃêÿÇËéÊÇË
 	switch (_id)
 	{
-	case 0:	m_image.SetRect(0, 0, m_size.x, m_size.y);						break;
-	case 1:	m_image.SetRect(m_size.x, 0, m_size.x * 2, m_size.y);			break;
-	case 2:	m_image.SetRect(0, m_size.y, m_size.x, m_size.y * 2);			break;
-	case 3:	m_image.SetRect(m_size.x, m_size.y, m_size.x * 2, m_size.y * 2);break;
+	case 0:	m_image.SetRect(0, 0, (LONG)m_size.x, (LONG)m_size.y);						break;
+	case 1:	m_image.SetRect((LONG)m_size.x, 0, (LONG)m_size.x * 2, (LONG)m_size.y);			break;
+	case 2:	m_image.SetRect(0, (LONG)m_size.y, (LONG)m_size.x, (LONG)m_size.y * 2);			break;
+	case 3:	m_image.SetRect((LONG)m_size.x, (LONG)m_size.y, (LONG)m_size.x * 2, (LONG)m_size.y * 2);break;
 	default:																break;
 	}	
 

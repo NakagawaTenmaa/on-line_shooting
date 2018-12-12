@@ -6,8 +6,8 @@ class Animation
 public:
 	// コンストラクタ
 	Animation();
-	Animation(int _size, RECT _rect, wchar_t *_fileName, int _time = 1);
-	Animation(int _size, RECT _rect, wchar_t *_fileName, DirectX::SimpleMath::Vector2 _pos ,int _time = 1);
+	Animation(int _size, RECT _rect, wchar_t *_fileName, float _time = 1.0f);
+	Animation(int _size, RECT _rect, wchar_t *_fileName, DirectX::SimpleMath::Vector2 _pos ,float _time = 1.0f);
 	// デストラクタ
 	~Animation();
 

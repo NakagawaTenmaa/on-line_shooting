@@ -1,6 +1,11 @@
 ﻿#include "SceneBase.h"
 #include "../Common/DrawManager.h"
 
+Scene::SceneBase::SceneBase()
+{
+	m_adx2le = ADX2Le::GetInstance();
+}
+
 /// <summary>
 /// 描画開始
 /// </summary>

@@ -23,6 +23,9 @@
     <Filter Include="Animation">
       <UniqueIdentifier>{dd6bc3fc-6983-4f71-9e0d-266ab6288a09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{41d3494a-e404-48c9-a04f-a07406a232a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -111,6 +114,9 @@
     <ClInclude Include="Scene\PlayerCustomScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Sound\ADX2LePlayer.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -190,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="Scene\PlayerCustomScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\ADX2LePlayer.cpp">
+      <Filter>Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -159,7 +159,6 @@ void Input::StreamManager::PassRender(DirectX::SimpleMath::Vector2 _pos)
 /// <param name="_str">文字</param>
 void Input::StreamManager::Render(DirectX::SimpleMath::Vector2 _pos, const std::string _str)
 {
-	int k = 0;
 	int w = 6;
 	m_strImage.SetPos(_pos);
 	for (size_t i = 0; i < _str.size(); i++)
